@@ -1,4 +1,5 @@
 import csv
+import os
 
 
 class Item:
@@ -46,13 +47,15 @@ class Item:
         if len(name) <= 10:
             self.__name = name
         else:
-            print("Длина наименования товара превышает 10 символов")
+            raise "Длина наименования товара превышает 10 символов"
 
 
     @classmethod
     def instantiate_from_csv(cls):
         """класс-метод, инициализирующий экземпляры класса Item данными из файла src/items.csv"""
-        with open(r'C:\Users\Egor\Desktop\electronics-shop-project\src\items.csv', newline='', encoding='utf-8') as csvfile:
+        os.chdir('..')
+        path_to_csv = os.path.join("src", "items.csv")
+        with open(path_to_csv, newline='', encoding='utf-8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 cls.all.append(row)
