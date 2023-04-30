@@ -1,5 +1,18 @@
 import pytest
+
 """Здесь надо написать тесты с использованием pytest для модуля item."""
+
+
+def test__repr__(test_item):
+    """Проверяет вывод объекта для разработчика"""
+    assert repr(test_item) == "Item('iphone', 20000.0, 2)"
+
+
+def test__str__(test_item):
+    """Проверяет вывод объекта для пользователя"""
+    assert str(test_item) == "iphone"
+
+
 def test_calculate_total_price(test_item):
     """Проверяет общую стоимость товара"""
     assert test_item.calculate_total_price() == 40000.0
@@ -15,7 +28,6 @@ def test_name(test_item):
     assert test_item.name == "iphone"
     with pytest.raises(Exception):
         test_item.name = "iphoneProMax"
-
 
 
 def test_name_len(test_item):
