@@ -1,5 +1,6 @@
 import csv
 import os
+# from src.phone import Phone
 
 
 class Item:
@@ -24,12 +25,18 @@ class Item:
         self.all.append(self)
 
     def __repr__(self):
-        """Выводит объекта для разработчика"""
+        """Выводит объект для разработчика"""
         return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
     def __str__(self):
-        """Выводит объекта для пользователя"""
+        """Выводит объект для пользователя"""
         return self.__name
+
+    def __add__(self, other):
+        if isinstance(self, Item) and isinstance(other, Item):
+            total_quantity = self.quantity + other.quantity
+            return total_quantity
+        raise ValueError('Складывать можно только объекты Item и Phone.')
 
     def calculate_total_price(self) -> float:
         """
