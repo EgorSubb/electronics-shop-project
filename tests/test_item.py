@@ -1,4 +1,6 @@
 import pytest
+from src import item
+from src import phone
 
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 
@@ -12,6 +14,13 @@ def test__str__(test_item):
     """Проверяет вывод объекта для пользователя"""
     assert str(test_item) == "iphone"
 
+def test__add__():
+    """Проверяет сумму количества товаров у объектов"""
+    item2 = item.Item("Смартфон", 10000, 20)
+    phone1 = phone.Phone("iPhone 14", 120_000, 5, 2)
+    assert item2 + phone1 == 25
+    with pytest.raises(ValueError):
+        assert item2 + 3 == 23
 
 def test_calculate_total_price(test_item):
     """Проверяет общую стоимость товара"""
